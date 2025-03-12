@@ -13,17 +13,22 @@ jobs:
       security-events: write
       actions: read
       contents: read
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: 'javascript-typerscript'
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
+  analyse:
+        name: Analyse
+        runs-on: ubuntu-latest
+        strategy: 
+          fail-fast: false
+          matrix: 
+            languange: ['java']
         
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v2
     
+          - name: Initialize CodeQL
+            uses: github/codeql-action/init@v1
+    
+          - name: Perform CodeQL Analysis
+            uses: github/codeql-action/analyze@v1
+    
+ 
